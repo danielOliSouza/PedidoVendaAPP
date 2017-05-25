@@ -12,8 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.adapter.ProdutoAdapter;
+import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 import br.com.adsddm.pedidovenda.model.PedidoVenda;
 
 public class PedidoVendaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
@@ -40,7 +44,8 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     }
 
     public void inicializaPedidoTest(){
-        //Enviar Teste
+        List<ItemPedidoVenda> ipv = new ArrayList<>();
+
     }
 
     public void listaProduto(){
