@@ -39,6 +39,7 @@ public class PedidoVendaService {
     }
 
     public  String enviarPedidoVenda(PedidoVenda pedidoVenda){
+
         JSONObject root = new JSONObject();
         JSONObject obj = new JSONObject();
         JSONArray jItems = new JSONArray();
