@@ -11,41 +11,46 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.com.adsddm.pedidovenda.model.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.adapter.ProdutoAdapter;
+import br.com.adsddm.pedidovenda.model.Cliente;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 import br.com.adsddm.pedidovenda.model.PedidoVenda;
+import br.com.adsddm.pedidovenda.service.PedidoVendaService;
 
 public class PedidoVendaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private ListView listView;
     private PedidoVenda pedidoVenda;
+    private PedidoVendaService pedidoVendaService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido_venda);
 
         pedidoVenda = new PedidoVenda();
-
+        pedidoVendaService = new PedidoVendaService();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         listaProduto();
+        pedidoVendaService.inicializaPedidoTest(pedidoVenda);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String s = (String) parent.getAdapter().getItem(position);
-        Toast.makeText(this, "Produto Selecionado: " + s +", posição: " + position,
-                Toast.LENGTH_LONG).show();
-    }
-
-    public void inicializaPedidoTest(){
-        List<ItemPedidoVenda> ipv = new ArrayList<>();
-
+        //Toast.makeText(this, "Produto Selecionado: " + s +", posição: " + position,
+        //        Toast.LENGTH_LONG).show();
+        Toast.makeText(this, pedidoVendaService.enviarPedidoVenda(pedidoVenda),
+                        Toast.LENGTH_LONG).show();
     }
 
     public void listaProduto(){
@@ -53,6 +58,7 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         listView.setAdapter(new ProdutoAdapter(this));
         listView.setOnItemClickListener(this);
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
