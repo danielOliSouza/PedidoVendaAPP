@@ -40,11 +40,12 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         StrictMode.ThreadPolicy sop= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sop);
 
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
         p = this;
         pedidoVenda = new PedidoVenda();
         pedidoVendaService = new PedidoVendaService();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         listaProduto();
         pedidoVendaService.inicializaPedidoTest(pedidoVenda);
@@ -68,27 +69,20 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Boolean result = true;
+
             switch (item.getItemId()){
                 case R.id.salvar:
                     Toast.makeText(p, pedidoVendaService.enviarPedidoVenda(pedidoVenda), Toast.LENGTH_LONG).show();
-                    return true;
+                    break;
                 case R.id.cancelar:
                     Toast.makeText(p, "Cancelar", Toast.LENGTH_LONG).show();
-                    return true;
+                    break;
+                default:
+                    result = false;
+                    break;
             }
-            /*
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Toast.makeText(null, R.string.title_home, Toast.LENGTH_LONG).show();
-                    return true;
-                case R.id.navigation_dashboard:
-                    Toast.makeText(null, R.string.title_dashboard, Toast.LENGTH_SHORT).show();
-                    return true;
-                case R.id.navigation_notifications:
-                    Toast.makeText(null, R.string.title_notifications, Toast.LENGTH_LONG).show();
-                    return true;
-            }*/
-            return false;
+            return result;
         }
 
     };

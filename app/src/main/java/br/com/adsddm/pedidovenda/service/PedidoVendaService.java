@@ -4,6 +4,9 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import br.com.adsddm.pedidovenda.model.Cliente;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 import br.com.adsddm.pedidovenda.model.PedidoVenda;
@@ -31,9 +34,30 @@ public class PedidoVendaService {
         p.setPreco(12.1f);
         p.setId(1);
         item.setProduto(p);
+
+        pedidoVenda.getItempedidovendas().add(item);
     }
 
     public  String enviarPedidoVenda(PedidoVenda pedidoVenda){
-        return  new PedidoVendaReqServer().enviaPedidoVenda();
+        JSONObject root = new JSONObject();
+        JSONObject obj = new JSONObject();
+        JSONArray jItems = new JSONArray();
+        try {
+            obj.put("idcliente", pedidoVenda.getCliente().getId());
+
+            for(int i = 0; i < pedidoVenda.getItempedidovendas().size(); i++){
+                JSONObject item = new JSONObject();
+                item.put("idproduto", pedidoVenda.getItempedidovendas().get(i).getProduto().getId());
+                item.put("qtd", pedidoVenda.getItempedidovendas().get(i).getQtd());
+
+                jItems.put(item);
+            }
+
+            obj.put("items", jItems);
+            root.put("pedidovenda", obj);
+        }catch(Exception e){
+            return "Error: convert a json: " + e.getMessage();
+        }
+        return  root.toString();
     }
 }

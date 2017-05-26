@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 
 /**
@@ -16,20 +17,20 @@ import java.net.URL;
 
 public class PedidoVendaReqServer{
 
-    public String enviaPedidoVenda(){
+    public String enviaPedidoVenda(String param){
         InputStream stream = null;
         HttpURLConnection connection = null;
         String result = null;
-        String myUrl= "http://viacep.com.br/ws/74916100/json"; // "http://192.168.1.5:8080/PedidoVenda/pedidovenda";
+        String myUrl= "http://192.168.1.5:8080/PedidoVenda/pedidovenda?json=";
         URL url = null;
 
         try{
-            url = new URL(myUrl);
+            url = new URL(myUrl + URLEncoder.encode(param,"UTF-8"));
             connection = (HttpURLConnection) url.openConnection();
             connection.setReadTimeout(10*1000);//10s
             connection.setConnectTimeout(10*1000);//10s
 
-            //connection.setRequestMethod("GET");
+            connection.setRequestMethod("POST");
             connection.setDoInput(true);
 
             connection.connect();
