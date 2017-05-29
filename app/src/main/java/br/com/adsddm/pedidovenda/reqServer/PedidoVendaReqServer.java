@@ -1,6 +1,7 @@
 package br.com.adsddm.pedidovenda.reqServer;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,14 +22,12 @@ public class PedidoVendaReqServer{
         InputStream stream = null;
         HttpURLConnection connection = null;
         String result = null;
-        String myUrl= "http://192.168.1.5:8080/PedidoVenda/pedidovenda?json=";
+        String myUrl= "http://192.168.1.6:8080/PedidoVenda/pedidovenda?json=";
         URL url = null;
 
         try{
             url = new URL(myUrl + URLEncoder.encode(param,"UTF-8"));
             connection = (HttpURLConnection) url.openConnection();
-            connection.setReadTimeout(10*1000);//10s
-            connection.setConnectTimeout(10*1000);//10s
 
             connection.setRequestMethod("POST");
             connection.setDoInput(true);
@@ -44,7 +43,7 @@ public class PedidoVendaReqServer{
                 result = readStream(stream);
             }
         }catch (Exception e){
-            return "Erro: " + e.getMessage();
+            Log.e("PEDIDOVENDA", "Erro: " + e.getMessage());
         }finally {
             if (stream != null) {
                 try {

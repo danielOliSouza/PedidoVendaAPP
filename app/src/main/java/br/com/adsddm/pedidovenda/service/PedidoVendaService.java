@@ -1,5 +1,6 @@
 package br.com.adsddm.pedidovenda.service;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.model.Cliente;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 import br.com.adsddm.pedidovenda.model.PedidoVenda;
@@ -19,7 +21,6 @@ import br.com.adsddm.pedidovenda.reqServer.PedidoVendaReqServer;
 
 public class PedidoVendaService {
     private ObjectMapper mapper = new ObjectMapper();
-
     public void inicializaPedidoTest(PedidoVenda pedidoVenda){
         Cliente c = new Cliente();
         c.setId(1);
@@ -38,7 +39,7 @@ public class PedidoVendaService {
         pedidoVenda.getItempedidovendas().add(item);
     }
 
-    public  String enviarPedidoVenda(PedidoVenda pedidoVenda){
+    public  void enviarPedidoVenda(PedidoVenda pedidoVenda){
 
         JSONObject root = new JSONObject();
         JSONObject obj = new JSONObject();
@@ -57,8 +58,9 @@ public class PedidoVendaService {
             obj.put("items", jItems);
             root.put("pedidovenda", obj);
         }catch(Exception e){
-            return "Error: convert a json: " + e.getMessage();
+            Log.e("PEDIDOVENDA", e.getMessage());
         }
-        return  root.toString();
+        Log.i("PEDIDOVENDA", root.toString());
+        new PedidoVendaReqServer().enviaPedidoVenda(root.toString());
     }
 }

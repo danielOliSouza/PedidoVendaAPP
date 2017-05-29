@@ -59,7 +59,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/tr"
                     android:layout_marginTop="11dp"
-                    android:text="CPF" />
+                    android:text="CPF"
+                    android:digits="maskCPF"/>
 
                 <EditText
                     android:id="@+id/etCPF"
@@ -68,9 +69,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/txtCPF"
-                    android:contentDescription="@string/cpf_ex"
                     android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:inputType="phone" />
 
                 <TextView
                     android:id="@+id/txtCliente"
@@ -131,7 +131,7 @@
                 <ListView
                     android:id="@+id/lvProdutos"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/textView"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true">

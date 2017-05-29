@@ -7,28 +7,33 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.support.v7.appcompat.*;
 import android.widget.TextView;
+
+import java.util.List;
+
 import br.com.adsddm.pedidovenda.R;
+import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 
 /**
  * Created by Daniel on 24/05/2017.
  */
 
 public class ProdutoAdapter extends BaseAdapter {
-    private String[] produtos = new String[] {"Produto A", "Produto B", "Produto C", "Produto D", "Produto E", "Produto F"};
     private Context ctx;
+    private List<ItemPedidoVenda> itemsPedidoVenda;
 
-    public ProdutoAdapter(Context ctx){
+    public ProdutoAdapter(Context ctx, List<ItemPedidoVenda> itemsPedidoVendas){
         super();
         this.ctx = ctx;
+        this.itemsPedidoVenda = itemsPedidoVendas;
     }
     @Override
     public int getCount(){
-        return  produtos.length;
+        return  itemsPedidoVenda.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return produtos[position];
+        return itemsPedidoVenda.get(position);
     }
 
     @Override
@@ -39,14 +44,14 @@ public class ProdutoAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_produto, parent, false);
-        String produto = produtos[position];
+        ItemPedidoVenda item = itemsPedidoVenda.get(position);
         TextView descricao =(TextView) v.findViewById(R.id.tdDescricao);
         TextView qtd = (TextView) v.findViewById(R.id.tdQtd);
         TextView preco = (TextView) v.findViewById(R.id.tdPreco);
 
-        descricao.setText(produto);
-        qtd.setText(String.valueOf(position));
-        preco.setText(String.valueOf(position));
+        descricao.setText(item.getProduto().getNome());
+        qtd.setText(String.valueOf(item.getQtd()));
+        preco.setText(String.valueOf(item.getProduto().getPreco()));
         return v;
     }
 }
