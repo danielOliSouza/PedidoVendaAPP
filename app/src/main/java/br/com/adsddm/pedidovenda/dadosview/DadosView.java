@@ -25,7 +25,7 @@ public class DadosView {
         clientes = new ArrayList<>();
     }
 
-    public static DadosView Instance(){ //Singleton
+    public static DadosView Instance(){ //Singleton - Só uma instacia
         if(_instance == null){
             _instance = new DadosView();
         }
