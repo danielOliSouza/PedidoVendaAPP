@@ -1,5 +1,6 @@
 package br.com.adsddm.pedidovenda.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 import br.com.adsddm.pedidovenda.R;
-import br.com.adsddm.pedidovenda.adapter.ProdutoAdapter;
+import br.com.adsddm.pedidovenda.adapter.ItemPedidoVendaAdapter;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 import br.com.adsddm.pedidovenda.service.PedidoVendaService;
 import br.com.adsddm.pedidovenda.util.Mask;
@@ -26,7 +27,6 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     private PedidoVendaActivity p;
     private EditText etCPF;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +35,20 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         StrictMode.ThreadPolicy sop= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sop);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         etCPF = (EditText) findViewById(R.id.etCPF);
 
         p = this;
         dadosView = DadosView.Instance();
         pedidoVendaService = new PedidoVendaService();
 
-        listaProduto();
         etCPF.addTextChangedListener(Mask.insert("###.###.###-##", etCPF));
         pedidoVendaService.inicializaPedidoTest(dadosView.getPedidoVenda());
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        listaProduto();
     }
 
     @Override
@@ -56,33 +58,17 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
                 Toast.LENGTH_LONG).show();
     }
 
-    public void listaProduto(){
-        listView = (ListView) findViewById(R.id.lvProdutos);
-        listView.setAdapter(new ProdutoAdapter(this, dadosView.getPedidoVenda().getItempedidovendas()));
-        listView.setOnItemClickListener(this);
+    public void onAddProduto(View view){
+        Intent intent = new Intent(this, SelecionaProdutoActivity.class);
+        startActivity(intent);
+    }
+    public void onSalvar(View view){
+        pedidoVendaService.enviarPedidoVenda(dadosView.getPedidoVenda());
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Boolean result = true;
-
-            switch (item.getItemId()){
-                case R.id.salvar:
-                    pedidoVendaService.enviarPedidoVenda(dadosView.getPedidoVenda());
-                    break;
-                case R.id.cancelar:
-                    Toast.makeText(p, "Cancelar", Toast.LENGTH_LONG).show();
-                    break;
-                default:
-                    result = false;
-                    break;
-            }
-            return result;
-        }
-
-    };
-
+    public void listaProduto(){
+        listView = (ListView) findViewById(R.id.lvProdutos);
+        listView.setAdapter(new ItemPedidoVendaAdapter(this, dadosView.getPedidoVenda().getItempedidovendas()));
+        listView.setOnItemClickListener(this);
+    }
 }

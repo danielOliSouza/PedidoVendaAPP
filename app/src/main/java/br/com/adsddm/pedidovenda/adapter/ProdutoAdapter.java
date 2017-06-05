@@ -5,35 +5,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.support.v7.appcompat.*;
 import android.widget.TextView;
 
 import java.util.List;
 
 import br.com.adsddm.pedidovenda.R;
-import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
+import br.com.adsddm.pedidovenda.model.Produto;
 
 /**
- * Created by Daniel on 24/05/2017.
+ * Created by Daniel on 04/06/2017.
  */
 
-public class ProdutoAdapter extends BaseAdapter {
+public class ProdutoAdapter extends BaseAdapter{
     private Context ctx;
-    private List<ItemPedidoVenda> itemsPedidoVenda;
+    private List<Produto> produtos;
 
-    public ProdutoAdapter(Context ctx, List<ItemPedidoVenda> itemsPedidoVendas){
+    public ProdutoAdapter(Context ctx, List<Produto> produtos){
         super();
         this.ctx = ctx;
-        this.itemsPedidoVenda = itemsPedidoVendas;
+        this.produtos = produtos;
     }
     @Override
     public int getCount(){
-        return  itemsPedidoVenda.size();
+        return  produtos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return itemsPedidoVenda.get(position);
+        return produtos.get(position);
     }
 
     @Override
@@ -44,14 +43,13 @@ public class ProdutoAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = LayoutInflater.from(ctx).inflate(R.layout.adapter_produto, parent, false);
-        ItemPedidoVenda item = itemsPedidoVenda.get(position);
-        TextView descricao =(TextView) v.findViewById(R.id.tdDescricao);
-        TextView qtd = (TextView) v.findViewById(R.id.tdQtd);
-        TextView preco = (TextView) v.findViewById(R.id.tdPreco);
 
-        descricao.setText(item.getProduto().getNome());
-        qtd.setText(String.valueOf(item.getQtd()));
-        preco.setText(String.valueOf(item.getProduto().getPreco()));
+        Produto item = produtos.get(position);
+        TextView descricao =(TextView) v.findViewById(R.id.colDescricao);
+        TextView preco = (TextView) v.findViewById(R.id.colPreco);
+
+        descricao.setText(item.getNome());
+        preco.setText(String.valueOf(item.getPreco()));
         return v;
     }
 }

@@ -19,6 +19,8 @@ public class DadosView {
     private List<Produto> produtos;
     private List<Cliente> clientes;
 
+    public static final String TAG_APP = "ADSDDM";
+
     private DadosView(){
         pedidoVenda = new PedidoVenda();
         produtos = new ArrayList<>();

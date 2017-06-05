@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="br.com.adsddm.pedidovenda.controller.PedidoVendaActivity">
 
-    <FrameLayout
-        android:id="@+id/content"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtVendedor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/vendedor" />
+
+            <Spinner
+                android:id="@+id/snVendedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtVendedor" />
+
+            <TextView
+                android:id="@+id/tr"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/snVendedor"
+                android:layout_marginTop="11dp"
+                android:background="@color/colorPrimary" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:id="@+id/txtVendedor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/vendedor" />
-
-                <Spinner
-                    android:id="@+id/snVendedor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtVendedor"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:id="@+id/tr"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/snVendedor"
-                    android:layout_marginTop="11dp"
-                    android:background="@color/colorPrimary" />
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/txtCPF"
@@ -57,10 +57,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/tr"
                     android:layout_marginTop="11dp"
-                    android:text="CPF"
-                    android:digits="maskCPF"/>
+                    android:digits="maskCPF"
+                    android:text="CPF" />
 
                 <EditText
                     android:id="@+id/etCPF"
@@ -72,94 +71,68 @@
                     android:ems="10"
                     android:inputType="phone" />
 
-                <TextView
-                    android:id="@+id/txtCliente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/etCPF"
-                    android:layout_marginTop="11dp"
-                    android:text="@string/cliente" />
-
-                <EditText
-                    android:id="@+id/etCliente"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/txtCliente"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:text="@string/clienteNome" />
-
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fabtnPesquisaCliente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/etCPF"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/etCPF"
                     android:clickable="true"
                     app:fabSize="mini"
                     app:srcCompat="@android:drawable/ic_menu_search" />
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tr2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/etCliente"
-                    android:layout_marginTop="11dp"
-                    android:background="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/txtCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etCPF"
+                android:layout_marginTop="11dp"
+                android:text="@string/cliente" />
 
-                <Button
-                    android:id="@+id/btnAddProduto"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
-                    android:text="Adicionar Produto"
-                    android:layout_below="@+id/tr2"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+            <EditText
+                android:id="@+id/etCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtCliente"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="textPersonName"
+                android:text="@string/clienteNome" />
 
-                <ListView
-                    android:id="@+id/lvProdutos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/textView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true">
 
-                </ListView>
+            <TextView
+                android:id="@+id/tr2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/etCliente"
+                android:layout_marginTop="11dp"
+                android:background="@color/colorPrimary" />
 
-                <TextView
-                    android:id="@+id/txtSubTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/lvProdutos"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/subTotal" />
+            <Button
+                android:id="@+id/btnAddProduto"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/tr2"
+                android:layout_marginTop="11dp"
+                android:onClick="onAddProduto"
+                android:text="Adicionar Produto" />
 
-                <EditText
-                    android:id="@+id/etSubTotal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/txtSubTotal"
-                    android:layout_marginBottom="20dp"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:inputType="textPersonName"
-                    android:text="@string/dinheiro" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textView"
@@ -192,26 +165,51 @@
                     android:layout_toLeftOf="@+id/textView2"
                     android:text="Descrição"
                     android:textColor="#000" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#000"
-                    android:layout_above="@+id/lvProdutos"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
             </RelativeLayout>
-        </ScrollView>
-    </FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:background="#000" />
+
+            <ListView
+                android:id="@+id/lvProdutos"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:minHeight="200dp"
+                android:scrollbars="horizontal|vertical" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:attr/windowBackground"
-        app:menu="@menu/navigation" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancelar" />
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onSalvar"
+            android:text="Salvar" />
+    </LinearLayout>
+
+</RelativeLayout>
