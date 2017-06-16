@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.adapter.ItemPedidoVendaAdapter;
 import br.com.adsddm.pedidovenda.adapter.ProdutoAdapter;
@@ -41,12 +43,22 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
     @Override
     protected void onStart() {
         super.onStart();
+        if(dados.getProdutos().isEmpty()){
+            try{
+                dados.setProdutos(produtoService.listarTodosProdutos());
+                listaProdutos();
+            }catch (Exception e){
+                Toast.makeText(this, "Não foi possivel buscar os Produtos", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    public void onAtualizar(View v) {
         try {
-            dados.setProdutos(produtoService.listarTodosProdutos());
+            dados.setProdutos(produtoService.atualizarProdutos());
             listaProdutos();
-        }catch(Exception e){
-            Log.e(DadosView.TAG_APP, e.getMessage());
-            Toast.makeText(this, "Não foi possivel busca os Produtos", Toast.LENGTH_LONG).show();
+        }catch (Exception e){
+            Toast.makeText(this, "Não foi possivel buscar os Produtos", Toast.LENGTH_LONG).show();
         }
     }
 

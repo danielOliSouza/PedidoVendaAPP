@@ -47,30 +47,26 @@ public class ProdutoService {
         return produtos;
     }
 
-    public void salvar() throws Exception{
-        try {
-            List<Produto> produtos = pegarListaProdutos();
-            salvar(produtos);
-        }catch (Exception e){
-            Log.e(DadosView.TAG_APP, "salvar" + e.getMessage());
-        }
-    }
+
     public void salvar(Produto produto) throws Exception{
         produtoRepository.guardar(produto);
     }
-    public void salvar(List produtos) throws  Exception{
-        produtoRepository.guardar(produtos);
+    public List<Produto> salvar(List produtos) throws  Exception{
+        return produtoRepository.guardar(produtos);
     }
 
     public List<Produto> atualizarProdutos() throws Exception{
-        salvar();
+        List<Produto> produtos = pegarListaProdutos();
+        produtoRepository.deleteAll();
+        salvar(produtos);
         return  listarTodosProdutos();
     }
 
     public List<Produto> listarTodosProdutos() throws  Exception{
-        if(produtoRepository.pesquisar().isEmpty()){
-            salvar(pegarListaProdutos());
+        List<Produto> produtos =  produtoRepository.pesquisar();
+        if(produtos.isEmpty()){
+            produtos = salvar(pegarListaProdutos());
         };
-        return produtoRepository.pesquisar();
+        return produtos;
     }
 }

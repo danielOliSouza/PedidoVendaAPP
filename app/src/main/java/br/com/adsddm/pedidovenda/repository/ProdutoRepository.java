@@ -72,6 +72,19 @@ public class ProdutoRepository extends Repository{
             db.close();
         }
     }
+
+    public void deleteAll() throws Exception{
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        try {
+            values.put("seq",0);
+            db.delete("produto",null,null);
+            db.update("sqlite_sequence", values, "name=?", new String[]{"produto"});
+        } finally {
+            db.close();
+        }
+    }
     private List<Produto> toList(Cursor cursor) {
         List<Produto> produtos = new ArrayList<Produto>();
 
