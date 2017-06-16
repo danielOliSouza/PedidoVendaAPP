@@ -49,7 +49,7 @@ public class ProdutoAdapter extends BaseAdapter{
         TextView preco = (TextView) v.findViewById(R.id.colPreco);
 
         descricao.setText(item.getNome());
-        preco.setText(String.valueOf(item.getPreco()));
+        preco.setText(item.getPrecoToString());
         return v;
     }
 }

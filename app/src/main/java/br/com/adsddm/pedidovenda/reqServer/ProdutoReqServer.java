@@ -10,22 +10,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import br.com.adsddm.pedidovenda.dadosview.DadosView;
+
 /**
  * Created by Daniel on 04/06/2017.
  */
 
 public class ProdutoReqServer {
-    public String pegarListaProdutos(){
+    public String pegarListaProdutos() throws Exception {
         InputStream stream = null;
         HttpURLConnection connection = null;
         String result = null;
-        String myUrl= "http://192.168.1.6:8080/PedidoVenda/produto";
+        String myUrl= DadosView.URL_SERVIDOR + "PedidoVenda/produto";
         URL url = null;
 
         try{
             url = new URL(myUrl);
             connection = (HttpURLConnection) url.openConnection();
-
+            connection.setConnectTimeout(5*1000);
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
 
@@ -40,7 +42,8 @@ public class ProdutoReqServer {
                 result = readStream(stream);
             }
         }catch (Exception e){
-            Log.e("PEDIDOVENDA", "Erro: " + e.getMessage());
+            Log.e(DadosView.TAG_APP, "Exception: " + e.getMessage());
+            throw new Exception(e.getMessage());
         }finally {
             if (stream != null) {
                 try {

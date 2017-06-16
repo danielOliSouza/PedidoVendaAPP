@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
@@ -10,67 +11,46 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
-
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/linearLayout">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/txtVendedor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
                 android:text="@string/vendedor" />
-
             <Spinner
                 android:id="@+id/snVendedor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/txtVendedor" />
-
+                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tr"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/snVendedor"
                 android:layout_marginTop="11dp"
                 android:background="@color/colorPrimary" />
-
+            <TextView
+                android:id="@+id/txtCPF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:digits="maskCPF"
+                android:text="CPF" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/txtCPF"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="11dp"
-                    android:digits="maskCPF"
-                    android:text="CPF" />
-
                 <EditText
                     android:id="@+id/etCPF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/txtCPF"
+                    android:enabled="false"
                     android:ems="10"
                     android:inputType="phone" />
-
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fabtnPesquisaCliente"
                     android:layout_width="wrap_content"
@@ -82,54 +62,34 @@
                     app:fabSize="mini"
                     app:srcCompat="@android:drawable/ic_menu_search" />
             </RelativeLayout>
-
             <TextView
                 android:id="@+id/txtCliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/etCPF"
                 android:layout_marginTop="11dp"
                 android:text="@string/cliente" />
-
             <EditText
                 android:id="@+id/etCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/txtCliente"
                 android:ems="10"
                 android:enabled="false"
                 android:inputType="textPersonName"
                 android:text="@string/clienteNome" />
-
-
             <TextView
                 android:id="@+id/tr2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/etCliente"
                 android:layout_marginTop="11dp"
                 android:background="@color/colorPrimary" />
-
             <Button
                 android:id="@+id/btnAddProduto"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/tr2"
                 android:layout_marginTop="11dp"
                 android:onClick="onAddProduto"
                 android:text="Adicionar Produto" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -166,7 +126,6 @@
                     android:text="Descrição"
                     android:textColor="#000" />
             </RelativeLayout>
-
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
@@ -175,16 +134,12 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:background="#000" />
-
             <ListView
-                android:id="@+id/lvProdutos"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:minHeight="200dp"
-                android:scrollbars="horizontal|vertical" />
-
+                android:layout_height="wrap_content"
+                android:id="@+id/lvProdutos">
+            </ListView>
         </LinearLayout>
-
     </ScrollView>
 
     <LinearLayout
@@ -211,5 +166,4 @@
             android:onClick="onSalvar"
             android:text="Salvar" />
     </LinearLayout>
-
 </RelativeLayout>

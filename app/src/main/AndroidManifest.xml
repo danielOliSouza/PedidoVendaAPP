@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.SelecionaProdutoActivity"></activity>
+        <activity android:name=".controller.SelecionaProdutoActivity" />
+        <activity android:name=".controller.InfoProdutoActivity"></activity>
     </application>
 
 </manifest>

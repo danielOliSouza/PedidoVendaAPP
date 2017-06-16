@@ -1,5 +1,6 @@
 package br.com.adsddm.pedidovenda.controller;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,10 +22,7 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
     private DadosView dados;
     private ListView listView;
     private ProdutoService produtoService;
-    private Produto produtoSelecionado;
 
-    private EditText etDescricao;
-    private EditText etQtd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,30 +32,22 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
         StrictMode.ThreadPolicy sop= new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(sop);
 
-        etDescricao = (EditText) findViewById(R.id.etDescricao);
-        etQtd = (EditText) findViewById(R.id.etQtd);
-
         dados = DadosView.Instance();
         produtoService = new ProdutoService();
+    }
 
-        dados.setProdutos(produtoService.pegarListaProdutos());
-        etDescricao.requestFocus();
-        listaProdutos();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        try {
+            dados.setProdutos(produtoService.pegarListaProdutos());
+            listaProdutos();
+        }catch(Exception e){
+            Toast.makeText(this, "Não foi possivel busca os Produtos", Toast.LENGTH_LONG).show();
+        }
     }
 
 
-
-    public void onAddProduto(View view){
-        ItemPedidoVenda item = new ItemPedidoVenda();
-        item.setProduto(produtoSelecionado);
-        item.setQtd(12);
-
-        dados.getPedidoVenda().getItempedidovendas().add(item);
-
-        produtoSelecionado = new Produto();
-        preencheCampos();
-        Toast.makeText(this,"Produto Inserido no Pedido Venda", Toast.LENGTH_SHORT).show();
-    }
 
     public void listaProdutos(){
         listView = (ListView) findViewById(R.id.lvProdSelecionar);
@@ -67,12 +57,13 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        produtoSelecionado = (Produto) parent.getAdapter().getItem(position);
-        preencheCampos();
+        dados.setProdutoSelecionado((Produto) parent.getAdapter().getItem(position));
+        Toast.makeText(this, "Id: " + dados.getProdutoSelecionado().getId(), Toast.LENGTH_SHORT).show();
+        addProduto();
     }
 
-    public void preencheCampos(){
-        etDescricao.setText(produtoSelecionado.getNome());
-        etQtd.requestFocus();
+    public void addProduto(){
+        Intent intent = new Intent(this, InfoProdutoActivity.class);
+        startActivity(intent);
     }
 }

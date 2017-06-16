@@ -18,8 +18,10 @@ public class DadosView {
     private PedidoVenda pedidoVenda;
     private List<Produto> produtos;
     private List<Cliente> clientes;
+    private Produto produtoSelecionado = null;
 
     public static final String TAG_APP = "ADSDDM";
+    public static final String URL_SERVIDOR = "http://192.168.1.11:8080/";
 
     private DadosView(){
         pedidoVenda = new PedidoVenda();
@@ -56,5 +58,13 @@ public class DadosView {
 
     public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
+    }
+
+    public Produto getProdutoSelecionado() {
+        return produtoSelecionado;
+    }
+
+    public void setProdutoSelecionado(Produto produtoSelecionado) {
+        this.produtoSelecionado = produtoSelecionado;
     }
 }

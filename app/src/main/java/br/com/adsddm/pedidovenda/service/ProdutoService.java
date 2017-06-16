@@ -22,13 +22,12 @@ public class ProdutoService {
     public ProdutoService(){
         produtoReqServer = new ProdutoReqServer();
     }
-    public List<Produto> pegarListaProdutos(){
-        String result = produtoReqServer.pegarListaProdutos();
+    public List<Produto> pegarListaProdutos() throws Exception {
+        String result = null;
         List<Produto> produtos = new ArrayList<>();
 
-
-
         try {
+            result = produtoReqServer.pegarListaProdutos();
             JSONArray root = new JSONArray(result);
             for(int i = 0; i < root.length(); i++){
                 JSONObject obj = new JSONObject(root.get(i).toString());
@@ -43,6 +42,7 @@ public class ProdutoService {
             }
         }catch (Exception e){
             Log.e(DadosView.TAG_APP, e.getMessage());
+            throw new Exception("Exception: " + e.getMessage());
         }
         return produtos;
     }

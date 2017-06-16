@@ -27,7 +27,8 @@ public class PedidoVendaService {
         pedidoVenda.setCliente(c);
     }
 
-    public  void enviarPedidoVenda(PedidoVenda pedidoVenda){
+    public boolean enviarPedidoVenda(PedidoVenda pedidoVenda)  {
+        boolean status = true;
 
         JSONObject root = new JSONObject();
         JSONObject obj = new JSONObject();
@@ -45,10 +46,12 @@ public class PedidoVendaService {
 
             obj.put("items", jItems);
             root.put("pedidovenda", obj);
+            Log.i("PEDIDOVENDA", root.toString());
+            new PedidoVendaReqServer().enviaPedidoVenda(root.toString());
         }catch(Exception e){
             Log.e("PEDIDOVENDA", e.getMessage());
+            status=false;
         }
-        Log.i("PEDIDOVENDA", root.toString());
-        new PedidoVendaReqServer().enviaPedidoVenda(root.toString());
+        return status;
     }
 }

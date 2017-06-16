@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -12,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 import br.com.adsddm.pedidovenda.R;
@@ -46,8 +49,8 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onStart() {
+        super.onStart();
         listaProduto();
     }
 
@@ -63,12 +66,20 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         startActivity(intent);
     }
     public void onSalvar(View view){
-        pedidoVendaService.enviarPedidoVenda(dadosView.getPedidoVenda());
+        boolean status =  pedidoVendaService.enviarPedidoVenda(dadosView.getPedidoVenda());
+        if(!status){
+            Toast.makeText(this,"Não foi posivel enviar o Pedido de Venda", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void listaProduto(){
+        List<ItemPedidoVenda> itens = dadosView.getPedidoVenda().getItempedidovendas();
         listView = (ListView) findViewById(R.id.lvProdutos);
-        listView.setAdapter(new ItemPedidoVendaAdapter(this, dadosView.getPedidoVenda().getItempedidovendas()));
+        listView.setAdapter(new ItemPedidoVendaAdapter(this, itens));
         listView.setOnItemClickListener(this);
+
+        if(itens.size() <= 5) {
+            listView.getLayoutParams().height = (itens.size() * 85); //Aumentar tamanho da list de acordo com a quantidade de itens
+        }
     }
 }

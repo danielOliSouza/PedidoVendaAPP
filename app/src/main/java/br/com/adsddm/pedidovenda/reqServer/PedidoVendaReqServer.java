@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import br.com.adsddm.pedidovenda.dadosview.DadosView;
 
 
 /**
@@ -18,17 +21,17 @@ import java.net.URLEncoder;
 
 public class PedidoVendaReqServer{
 
-    public String enviaPedidoVenda(String param){
+    public String enviaPedidoVenda(String param) throws Exception {
         InputStream stream = null;
         HttpURLConnection connection = null;
         String result = null;
-        String myUrl= "http://192.168.1.6:8080/PedidoVenda/pedidovenda?json=";
+        String myUrl= DadosView.URL_SERVIDOR +  "PedidoVenda/pedidovenda?json=";
         URL url = null;
 
         try{
             url = new URL(myUrl + URLEncoder.encode(param,"UTF-8"));
             connection = (HttpURLConnection) url.openConnection();
-
+            connection.setConnectTimeout(5*1000);
             connection.setRequestMethod("POST");
             connection.setDoInput(true);
 
@@ -42,9 +45,11 @@ public class PedidoVendaReqServer{
             if(stream != null){
                 result = readStream(stream);
             }
-        }catch (Exception e){
-            Log.e("PEDIDOVENDA", "Erro: " + e.getMessage());
-        }finally {
+
+        } catch (Exception e){
+            Log.e(DadosView.TAG_APP, "Exception: " + e.getMessage());
+            throw  new Exception(e.getMessage());
+        } finally {
             if (stream != null) {
                 try {
                     stream.close();
