@@ -7,15 +7,16 @@ import java.nio.FloatBuffer;
  */
 
 public class Produto {
-    private long id;
+    private long _id;
+    private long idServidor;
     private String nome;
     private float preco;
 
-    public long getId() {
-        return id;
+    public long getIdServidor() {
+        return idServidor;
     }
-    public void setId(long id) {
-        this.id = id;
+    public void setIdServidor(long idServidor) {
+        this.idServidor = idServidor;
     }
     public String getNome() {
         return nome;
@@ -31,5 +32,11 @@ public class Produto {
     }
     public String getPrecoToString(){
         return String.format("%.2f", getPreco()).replace(".",",");
+    }
+    public long get_id() {
+        return _id;
+    }
+    public void set_id(long _id) {
+        this._id = _id;
     }
 }

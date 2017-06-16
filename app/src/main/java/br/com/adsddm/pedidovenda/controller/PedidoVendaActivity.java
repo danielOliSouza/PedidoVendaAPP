@@ -3,11 +3,7 @@ package br.com.adsddm.pedidovenda.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -57,8 +53,8 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ItemPedidoVenda s = (ItemPedidoVenda) parent.getAdapter().getItem(position);
-        Toast.makeText(this, "Produto Selecionado: " + s.getProduto().getNome() +", posição: " + position,
-                Toast.LENGTH_LONG).show();
+       // Toast.makeText(this, "Produto Selecionado: " + s.getProduto().getNome() +", posição: " + position,
+       //         Toast.LENGTH_LONG).show();
     }
 
     public void onAddProduto(View view){

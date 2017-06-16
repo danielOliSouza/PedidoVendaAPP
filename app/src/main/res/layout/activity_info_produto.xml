@@ -96,19 +96,24 @@
         android:id="@+id/etQtd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
+        android:layout_alignBaseline="@+id/textView19"
         android:layout_alignBottom="@+id/textView19"
-        android:layout_toRightOf="@+id/textView22"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toRightOf="@+id/textView12"
+        android:inputType="number"
+        android:text="01">
+
+        <requestFocus />
+    </EditText>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        >
 
         <Button
             android:id="@+id/button6"

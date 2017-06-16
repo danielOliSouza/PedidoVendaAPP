@@ -38,7 +38,7 @@ public class PedidoVendaService {
 
             for(int i = 0; i < pedidoVenda.getItempedidovendas().size(); i++){
                 JSONObject item = new JSONObject();
-                item.put("idproduto", pedidoVenda.getItempedidovendas().get(i).getProduto().getId());
+                item.put("idproduto", pedidoVenda.getItempedidovendas().get(i).getProduto().getIdServidor());
                 item.put("qtd", pedidoVenda.getItempedidovendas().get(i).getQtd());
 
                 jItems.put(item);

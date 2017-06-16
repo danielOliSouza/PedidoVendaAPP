@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -33,21 +35,20 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
         StrictMode.setThreadPolicy(sop);
 
         dados = DadosView.Instance();
-        produtoService = new ProdutoService();
+        produtoService = new ProdutoService(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         try {
-            dados.setProdutos(produtoService.pegarListaProdutos());
+            dados.setProdutos(produtoService.listarTodosProdutos());
             listaProdutos();
         }catch(Exception e){
+            Log.e(DadosView.TAG_APP, e.getMessage());
             Toast.makeText(this, "Não foi possivel busca os Produtos", Toast.LENGTH_LONG).show();
         }
     }
-
-
 
     public void listaProdutos(){
         listView = (ListView) findViewById(R.id.lvProdSelecionar);
@@ -58,11 +59,6 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         dados.setProdutoSelecionado((Produto) parent.getAdapter().getItem(position));
-        Toast.makeText(this, "Id: " + dados.getProdutoSelecionado().getId(), Toast.LENGTH_SHORT).show();
-        addProduto();
-    }
-
-    public void addProduto(){
         Intent intent = new Intent(this, InfoProdutoActivity.class);
         startActivity(intent);
     }

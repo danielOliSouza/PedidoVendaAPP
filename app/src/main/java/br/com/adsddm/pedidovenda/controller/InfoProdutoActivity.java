@@ -2,10 +2,14 @@ package br.com.adsddm.pedidovenda.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
@@ -26,6 +30,8 @@ public class InfoProdutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_produto);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);//Abrir Teclado
+
         dadosView = DadosView.Instance();
         produto = dadosView.getProdutoSelecionado();
 
@@ -33,8 +39,25 @@ public class InfoProdutoActivity extends AppCompatActivity {
         tvPreco = (TextView) findViewById(R.id.tvPreco);
         tvDescricao = (TextView) findViewById(R.id.tvDescricao);
         etQtd = (EditText) findViewById(R.id.etQtd);
+        etQtd.requestFocus();
 
         preencheCampos();
+        actionEnter();
+    }
+    //Adciona um ouvinte ao campo QTD (Ao precionar 'enter' executa o metodo onAddProdutoLista)
+    public void actionEnter(){
+        etQtd.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    onAddProdutoLista(v);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public void preencheCampos(){
@@ -42,7 +65,7 @@ public class InfoProdutoActivity extends AppCompatActivity {
             Toast.makeText(this, "Erro no Processo Interno", Toast.LENGTH_LONG).show();
         }
         else{
-            tvId.setText(String.valueOf(produto.getId()));
+            tvId.setText(String.valueOf(produto.getIdServidor()));
             tvPreco.setText(produto.getPrecoToString());
             tvDescricao.setText(produto.getNome());
         }
