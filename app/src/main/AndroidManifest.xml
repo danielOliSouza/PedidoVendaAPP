@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.SelecionaProdutoActivity" />
-        <activity android:name=".controller.InfoProdutoActivity"></activity>
+        <activity android:name=".controller.InfoProdutoActivity" />
     </application>
 
 </manifest>

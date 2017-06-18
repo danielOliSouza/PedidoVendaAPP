@@ -46,11 +46,11 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
         if(dados.getProdutos().isEmpty()){
             try{
                 dados.setProdutos(produtoService.listarTodosProdutos());
-                listaProdutos();
             }catch (Exception e){
                 Toast.makeText(this, "Não foi possivel buscar os Produtos", Toast.LENGTH_LONG).show();
             }
         }
+        listaProdutos();
     }
 
     public void onAtualizar(View v) {

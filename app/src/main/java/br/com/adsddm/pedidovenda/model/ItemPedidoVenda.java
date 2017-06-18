@@ -6,8 +6,8 @@ package br.com.adsddm.pedidovenda.model;
 
 public class ItemPedidoVenda {
     private long id;
-    private PedidoVenda pedidovenda;
-    private Produto produto;
+    private PedidoVenda pedidovenda = null;
+    private Produto produto = null;
     private int qtd;
 
     public ItemPedidoVenda() {

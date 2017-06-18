@@ -6,13 +6,17 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context="br.com.adsddm.pedidovenda.controller.PedidoVendaActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/linearLayout">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/linearLayout"
+        android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="11dp"
-                android:background="@color/colorPrimary" />
+                android:background="@android:color/background_dark" />
             <TextView
                 android:id="@+id/txtCPF"
                 android:layout_width="wrap_content"
@@ -51,7 +55,6 @@
                     android:enabled="false"
                     android:ems="10"
                     android:inputType="phone"
-                    android:layout_toLeftOf="@+id/fabtnPesquisaCliente"
                     android:layout_toStartOf="@+id/fabtnPesquisaCliente" />
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fabtnPesquisaCliente"
@@ -60,7 +63,7 @@
                     android:clickable="true"
                     app:fabSize="mini"
                     app:srcCompat="@android:drawable/ic_menu_search"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignBottom="@+id/etCPF"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>
@@ -83,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="11dp"
-                android:background="@color/colorPrimary" />
+                android:background="@android:color/background_dark" />
             <Button
                 android:id="@+id/btnAddProduto"
                 style="@style/Widget.AppCompat.Button.Colored"
@@ -92,51 +95,24 @@
                 android:layout_marginTop="11dp"
                 android:onClick="onAddProduto"
                 android:text="Adicionar Produto" />
-            <RelativeLayout
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:text="PRODUTOS"/>
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="11dp"
-                    android:text="Preço"
-                    android:textColor="#000" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/textView"
-                    android:layout_toLeftOf="@+id/textView"
-                    android:layout_toStartOf="@+id/textView"
-                    android:text="Qtd."
-                    android:textColor="#000" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignTop="@+id/textView2"
-                    android:text="Descrição"
-                    android:textColor="#000" />
-            </RelativeLayout>
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="#000" />
 
             <ListView
                 android:id="@+id/lvProdutos"
+                style="@style/Widget.AppCompat.ListView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="horizontal" />
+                android:layout_height="match_parent"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

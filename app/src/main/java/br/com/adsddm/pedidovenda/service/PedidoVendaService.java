@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.List;
+
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.model.Cliente;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
@@ -53,5 +55,18 @@ public class PedidoVendaService {
             status=false;
         }
         return status;
+    }
+
+    public ItemPedidoVenda pegarItemPedidoVendaDeProduto(Produto produto, PedidoVenda pedidoVenda) {
+        List<ItemPedidoVenda> items = pedidoVenda.getItempedidovendas();
+        Produto produtoPedidoVenda = null;
+        ItemPedidoVenda item = null;
+
+        for(int i =0; i < items.size() && item == null; i++){
+            if(items.get(i).getProduto().equals(produto)){
+                item = items.get(i);
+            };
+        }
+        return item;
     }
 }

@@ -39,4 +39,27 @@ public class Produto {
     public void set_id(long _id) {
         this._id = _id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Produto produto = (Produto) o;
+
+        if (_id != produto._id) return false;
+        if (idServidor != produto.idServidor) return false;
+        if (Float.compare(produto.preco, preco) != 0) return false;
+        return nome != null ? nome.equals(produto.nome) : produto.nome == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (_id ^ (_id >>> 32));
+        result = 31 * result + (int) (idServidor ^ (idServidor >>> 32));
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + (preco != +0.0f ? Float.floatToIntBits(preco) : 0);
+        return result;
+    }
 }

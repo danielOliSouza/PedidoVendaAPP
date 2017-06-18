@@ -50,7 +50,8 @@ public class ItemPedidoVendaAdapter extends BaseAdapter {
 
         descricao.setText(item.getProduto().getNome());
         qtd.setText(String.valueOf(item.getQtd()));
-        preco.setText(String.valueOf(item.getProduto().getPrecoToString()));
+        preco.setText(String.format("%.2f", (item.getQtd() * item.getProduto().getPreco()))
+                .replace(".", ","));
         return v;
     }
 }
