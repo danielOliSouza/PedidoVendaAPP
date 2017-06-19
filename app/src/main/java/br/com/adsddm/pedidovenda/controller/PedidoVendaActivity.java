@@ -1,5 +1,6 @@
 package br.com.adsddm.pedidovenda.controller;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.List;
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.adapter.ItemPedidoVendaAdapter;
+import br.com.adsddm.pedidovenda.model.Cliente;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 import br.com.adsddm.pedidovenda.model.PedidoVenda;
 import br.com.adsddm.pedidovenda.service.PedidoVendaService;
@@ -24,6 +27,7 @@ import br.com.adsddm.pedidovenda.util.Mask;
 public class PedidoVendaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private ListView listView;
     private EditText etCPF;
+    private TextView tvSubTotal;
 
     private DadosView dadosView = DadosView.Instance();
     private PedidoVendaService pedidoVendaService = new PedidoVendaService();
@@ -39,6 +43,8 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         StrictMode.setThreadPolicy(sop);
 
         etCPF = (EditText) findViewById(R.id.etCPF);
+        tvSubTotal = (TextView) findViewById(R.id.subTotal);
+        listView = (ListView) findViewById(R.id.lvProdutos);
 
         pedidoVendaService = new PedidoVendaService();
 
@@ -50,6 +56,7 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     protected void onStart() {
         super.onStart();
         listaProduto();
+        tvSubTotal.setText(String.format("%.2f", pedidoVendaService.subTotal(pedidoVenda)).replace(".",","));
     }
 
     @Override
@@ -62,12 +69,19 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     }
 
     public void onSalvar(View view){
-        boolean status =  pedidoVendaService.enviarPedidoVenda(pedidoVenda);
-        if(!status){
-            Toast.makeText(this,"Não foi posivel enviar o Pedido de Venda", Toast.LENGTH_LONG).show();
+        try {
+            pedidoVendaService.enviarPedidoVenda(pedidoVenda);
+            pedidoVenda = pedidoVendaService.limparPedidoVenda();
+            dadosView.setPedidoVenda(pedidoVenda);
+            listaProduto();
+        }catch (Exception e) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog);
+            builder.setTitle("Alerta")
+                    .setMessage(e.getMessage())
+                    .setIcon(android.R.drawable.stat_sys_warning)
+                    .show();
         }
-        else
-            limparPedidoVenda();
+
     }
 
     public void listaProduto(){
@@ -80,12 +94,5 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         //O scroll do list não esta funcionando
         //O list nao expande (wrap_context)
         listView.getLayoutParams().height = itens.size() * 140;
-    }
-
-    public void limparPedidoVenda(){
-        pedidoVenda = new PedidoVenda();
-        dadosView.setPedidoVenda(pedidoVenda);
-        pedidoVendaService.inicializaPedidoTest(pedidoVenda);
-        listaProduto();
     }
 }

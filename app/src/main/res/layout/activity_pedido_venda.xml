@@ -12,15 +12,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/linearLayout"
-        android:fillViewport="true">
+        android:layout_above="@+id/linearLayout">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/txtVendedor"
                 android:layout_width="wrap_content"
@@ -54,8 +55,7 @@
                     android:layout_alignParentStart="true"
                     android:enabled="false"
                     android:ems="10"
-                    android:inputType="phone"
-                    android:layout_toStartOf="@+id/fabtnPesquisaCliente" />
+                    android:inputType="phone"/>
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fabtnPesquisaCliente"
                     android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
                     android:id="@+id/textView6" />
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/subTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"

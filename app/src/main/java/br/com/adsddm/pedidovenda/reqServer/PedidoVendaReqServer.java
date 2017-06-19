@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
@@ -37,7 +38,7 @@ public class PedidoVendaReqServer{
 
             connection.connect();
             if(connection.getResponseCode() != HttpURLConnection.HTTP_OK){
-                throw  new Exception("Erro HTTP Code: " + connection.getResponseCode());
+                throw  new ConnectException("Erro HTTP Code: " + connection.getResponseCode());
             }
 
             stream = connection.getInputStream();
@@ -45,10 +46,13 @@ public class PedidoVendaReqServer{
             if(stream != null){
                 result = readStream(stream);
             }
-
-        } catch (Exception e){
-            Log.e(DadosView.TAG_APP, "Exception: " + e.getMessage());
-            throw  new Exception(e.getMessage());
+        }catch (SocketTimeoutException e){
+            throw new Exception("Tempo de Conecxão Com Servidor Expirado");
+        }catch (ConnectException e){
+            throw new Exception("Servidor indisponivel no momento");
+        }catch (Exception e){
+            Log.e(DadosView.TAG_APP, "Connect NetWork: " + e.getMessage());
+            throw  new Exception("Não foi Possivel Conectar Com o Servidor");
         } finally {
             if (stream != null) {
                 try {
