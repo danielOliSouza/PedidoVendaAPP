@@ -26,6 +26,7 @@ public class ProdutoService {
         produtoReqServer = new ProdutoReqServer();
         produtoRepository = new ProdutoRepository(context);
     }
+
     public List<Produto> pegarListaProdutos()  throws Exception{
         String result = null;
         List<Produto> produtos = new ArrayList<>();

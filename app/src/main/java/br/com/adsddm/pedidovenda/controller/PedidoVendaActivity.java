@@ -28,6 +28,7 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     private ListView listView;
     private EditText etCPF;
     private TextView tvSubTotal;
+    private EditText etCliente;
 
     private DadosView dadosView = DadosView.Instance();
     private PedidoVendaService pedidoVendaService = new PedidoVendaService();
@@ -45,11 +46,11 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         etCPF = (EditText) findViewById(R.id.etCPF);
         tvSubTotal = (TextView) findViewById(R.id.subTotal);
         listView = (ListView) findViewById(R.id.lvProdutos);
+        etCliente = (EditText) findViewById(R.id.etCliente);
 
         pedidoVendaService = new PedidoVendaService();
 
         etCPF.addTextChangedListener(Mask.insert("###.###.###-##", etCPF));
-        pedidoVendaService.inicializaPedidoTest(pedidoVenda);
     }
 
     @Override
@@ -57,6 +58,8 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         super.onStart();
         listaProduto();
         tvSubTotal.setText(String.format("%.2f", pedidoVendaService.subTotal(pedidoVenda)).replace(".",","));
+        if(pedidoVenda.getCliente() != null)
+            etCliente.setText(pedidoVenda.getCliente().getNome());
     }
 
     @Override
@@ -93,6 +96,13 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         //Gambiarra, cambiarra pura!!!
         //O scroll do list não esta funcionando
         //O list nao expande (wrap_context)
-        listView.getLayoutParams().height = itens.size() * 140;
+        listView.getLayoutParams().height = itens.size() * 180;
     }
+    public void selecionarCliente(View view){
+        Intent intent = new Intent(this, PesquisarClienteActivity.class);
+        startActivity(intent);
+
+    }
+
+
 }

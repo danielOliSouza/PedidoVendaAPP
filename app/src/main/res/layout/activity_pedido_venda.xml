@@ -56,16 +56,18 @@
                     android:enabled="false"
                     android:ems="10"
                     android:inputType="phone"/>
+
                 <android.support.design.widget.FloatingActionButton
                     android:id="@+id/fabtnPesquisaCliente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    app:fabSize="mini"
-                    app:srcCompat="@android:drawable/ic_menu_search"
                     android:layout_alignBottom="@+id/etCPF"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:clickable="true"
+                    android:onClick="selecionarCliente"
+                    app:fabSize="mini"
+                    app:srcCompat="@android:drawable/ic_menu_search" />
             </RelativeLayout>
             <TextView
                 android:id="@+id/txtCliente"

@@ -26,13 +26,6 @@ import br.com.adsddm.pedidovenda.reqServer.PedidoVendaReqServer;
 public class PedidoVendaService {
     private PedidoVendaReqServer pedidoVendaReqServer = new PedidoVendaReqServer();
 
-    public void inicializaPedidoTest(PedidoVenda pedidoVenda) {
-        Cliente c = new Cliente();
-        c.setId(1);
-        c.setNome("Fulano de Tal");
-        pedidoVenda.setCliente(c);
-    }
-
     public void enviarPedidoVenda(PedidoVenda pedidoVenda) throws Exception {
         String json = null;
         validarPedidoVenda(pedidoVenda);
@@ -111,7 +104,6 @@ public class PedidoVendaService {
     }
     public PedidoVenda limparPedidoVenda(){
         PedidoVenda pedidoVenda = new PedidoVenda();
-        this.inicializaPedidoTest(pedidoVenda);
         return pedidoVenda;
     }
 }
