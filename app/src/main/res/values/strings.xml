@@ -12,5 +12,21 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="cod">Cód. </string>
+    <string name="money">R$ </string>
+    <string name="fabricante">Fabricante: </string>
+    <string name="qtd"> Qtd. </string>
+    <string name="adicionar">Adicionar</string>
+    <string name="exemplo_fabricante">Fulano de Tal LTDA</string>
+    <string name="qtd_estoque">Qtd. Estoque: </string>
+    <string name="cor">Cor: </string>
+    <string name="adicionar_produto"> Adicionar Produtos</string>
+    <string name="produtos">Produtos</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="total">Total: </string>
+    <string name="erro_processo_interno">Erro Processo Interno</string>
+    <string name="nao_possivel_buscar_produtos">Não Foi Posivel Buscar os Produtos</string>
+    <string name="tempo_conecxao_servidor_expirado">"Tempo de Conecxão Com Servidor Expirado"</string>
     <string name="selecionarCliente">Selecionar Cliente</string>
 </resources>

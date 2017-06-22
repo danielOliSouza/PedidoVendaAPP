@@ -12,10 +12,6 @@ import java.util.List;
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.model.Produto;
 
-/**
- * Created by Daniel on 04/06/2017.
- */
-
 public class ProdutoAdapter extends BaseAdapter{
     private Context ctx;
     private List<Produto> produtos;

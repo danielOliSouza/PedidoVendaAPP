@@ -7,11 +7,6 @@ import br.com.adsddm.pedidovenda.model.Cliente;
 import br.com.adsddm.pedidovenda.model.PedidoVenda;
 import br.com.adsddm.pedidovenda.model.Produto;
 
-/**
- * Created by Daniel on 29/05/2017.
- * Dados que deverão ser usados pelas as activity
- */
-
 public class DadosView {
     private static DadosView _instance = null;
 

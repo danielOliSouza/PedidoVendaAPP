@@ -12,11 +12,7 @@ import java.util.List;
 import br.com.adsddm.pedidovenda.R;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 
-/**
- * Created by Daniel on 24/05/2017.
- */
-
-public class ItemPedidoVendaAdapter extends BaseAdapter {
+public class  ItemPedidoVendaAdapter extends BaseAdapter {
     private Context ctx;
     private List<ItemPedidoVenda> itemsPedidoVenda;
 

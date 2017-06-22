@@ -12,9 +12,6 @@ import java.net.URLEncoder;
 
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 
-/**
- * Created by Daniel on 04/06/2017.
- */
 
 public class ProdutoReqServer {
     public String pegarListaProdutos() throws Exception {

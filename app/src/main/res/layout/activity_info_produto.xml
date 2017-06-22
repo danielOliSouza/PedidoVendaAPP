@@ -17,7 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Cód: " />
+        android:text="@string/cod" />
 
     <TextView
         android:id="@+id/tvInfoId"
@@ -25,8 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/textView12"
-        android:layout_toRightOf="@+id/textView12"
-        android:text="1234" />
+        android:layout_toRightOf="@+id/textView12"/>
 
     <TextView
         android:id="@+id/textView14"
@@ -36,7 +35,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView12"
         android:layout_marginTop="25dp"
-        android:text="R$: " />
+        android:text="@string/money" />
 
     <TextView
         android:id="@+id/tvPreco"
@@ -45,8 +44,7 @@
         android:layout_alignBaseline="@+id/textView14"
         android:layout_alignBottom="@+id/textView14"
         android:layout_toEndOf="@+id/textView14"
-        android:layout_toRightOf="@+id/textView14"
-        android:text="500,00" />
+        android:layout_toRightOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/tvDescricao"
@@ -57,7 +55,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView14"
-        android:text="TextView"
         android:textSize="18sp" />
 
     <TextView
@@ -68,8 +65,9 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/tvDescricao"
         android:layout_marginTop="26dp"
-        android:text="Fabricante: "
-        android:textSize="18sp" />
+        android:text="@string/fabricante"
+        android:textSize="18sp"
+        android:layout_marginRight="5dp"/>
 
     <TextView
         android:id="@+id/textView18"
@@ -79,7 +77,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/textView17"
         android:layout_toRightOf="@+id/textView17"
-        android:text="Fulando de Tal LTDA"
+        android:text="@string/exemplo_fabricante"
         android:textSize="18sp" />
 
     <TextView
@@ -90,7 +88,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView17"
         android:layout_marginTop="97dp"
-        android:text="Qtd: " />
+        android:text="@string/qtd" />
 
     <EditText
         android:id="@+id/etQtd"
@@ -120,7 +118,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancelar" />
+            android:text="@android:string/cancel"
+            android:onClick="onCancelar"
+            style="@style/Widget.AppCompat.Button.Colored"/>
 
         <Button
             android:id="@+id/button5"
@@ -128,7 +128,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onAddProdutoLista"
-            android:text="Adicionar" />
+            android:text="@string/adicionar"
+            style="@style/Widget.AppCompat.Button.Colored"/>
     </LinearLayout>
 
     <TextView
@@ -139,7 +140,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView17"
         android:layout_marginTop="7dp"
-        android:text="Qtd. Estoque: "
+        android:text="@string/qtd_estoque"
         android:textSize="18sp" />
 
     <TextView
@@ -161,7 +162,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView20"
         android:layout_marginTop="7dp"
-        android:text="Cor: "
+        android:text="@string/cor"
         android:textSize="18sp" />
 
     <TextView

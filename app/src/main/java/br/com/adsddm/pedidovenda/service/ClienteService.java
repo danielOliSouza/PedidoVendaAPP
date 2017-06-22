@@ -13,10 +13,6 @@ import br.com.adsddm.pedidovenda.model.Cliente;
 import br.com.adsddm.pedidovenda.model.Produto;
 import br.com.adsddm.pedidovenda.reqServer.ClienteReqServer;
 
-/**
- * Created by Rosivaldo on 20/06/2017.
- */
-
 public class ClienteService {
     private ClienteReqServer clienteReqServer = new ClienteReqServer();
 

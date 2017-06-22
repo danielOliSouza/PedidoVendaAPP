@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
                 android:digits="maskCPF"
-                android:text="CPF" />
+                android:text="@string/cpf" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -96,12 +96,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
                 android:onClick="onAddProduto"
-                android:text="Adicionar Produto" />
+                android:text="@string/adicionar_produto" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PRODUTOS"/>
+                android:text="@string/produtos"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -125,7 +125,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R$: "
+                    android:text="@string/money"
                     android:id="@+id/textView6" />
 
                 <TextView
@@ -134,8 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/textView6"
-                    android:layout_toRightOf="@+id/textView6"
-                    android:text="0,00" />
+                    android:layout_toRightOf="@+id/textView6" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
@@ -155,7 +154,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cancelar" />
+            android:text="@android:string/cancel"
+            android:onClick="onCancelar"/>
 
         <Button
             android:id="@+id/btnSalvar"
@@ -164,6 +164,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onSalvar"
-            android:text="Salvar" />
+            android:text="@string/finalizar" />
     </LinearLayout>
 </RelativeLayout>

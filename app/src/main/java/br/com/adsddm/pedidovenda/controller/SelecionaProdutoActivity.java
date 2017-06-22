@@ -1,5 +1,6 @@
 package br.com.adsddm.pedidovenda.controller;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -20,12 +21,14 @@ import br.com.adsddm.pedidovenda.adapter.ProdutoAdapter;
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 import br.com.adsddm.pedidovenda.model.ItemPedidoVenda;
 import br.com.adsddm.pedidovenda.model.Produto;
+import br.com.adsddm.pedidovenda.service.PedidoVendaService;
 import br.com.adsddm.pedidovenda.service.ProdutoService;
 
 public class SelecionaProdutoActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
     private DadosView dados;
     private ListView listView;
     private ProdutoService produtoService;
+    private PedidoVendaService pedidoVendaService = new PedidoVendaService();
 
 
     @Override
@@ -47,7 +50,7 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
             try{
                 dados.setProdutos(produtoService.listarTodosProdutos());
             }catch (Exception e){
-                Toast.makeText(this, "Não foi possivel buscar os Produtos", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.nao_possivel_buscar_produtos, Toast.LENGTH_LONG).show();
             }
         }
         listaProdutos();
@@ -58,8 +61,23 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
             dados.setProdutos(produtoService.atualizarProdutos());
             listaProdutos();
         }catch (Exception e){
-            Toast.makeText(this, "Não foi possivel buscar os Produtos", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.nao_possivel_buscar_produtos, Toast.LENGTH_LONG).show();
         }
+    }
+    public void onFinalizar(View v){
+        try {
+            pedidoVendaService.enviarPedidoVenda(dados.getPedidoVenda());
+            dados.setPedidoVenda(pedidoVendaService.limparPedidoVenda());
+        }catch (Exception e) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog);
+            builder.setTitle("Alerta")
+                    .setMessage(e.getMessage())
+                    .setIcon(android.R.drawable.stat_sys_warning)
+                    .show();
+        }
+    }
+    public void onCancelar(View v){
+        finish();
     }
 
     public void listaProdutos(){

@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Daniel on 16/06/2017.
- */
-
 public abstract class Repository extends SQLiteOpenHelper{
     private static final String NOME_BD = "pedidovenda.db";
     private static final int VERSAO_BD = 1;

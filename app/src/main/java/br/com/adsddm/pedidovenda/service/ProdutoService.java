@@ -14,10 +14,6 @@ import br.com.adsddm.pedidovenda.model.Produto;
 import br.com.adsddm.pedidovenda.repository.ProdutoRepository;
 import br.com.adsddm.pedidovenda.reqServer.ProdutoReqServer;
 
-/**
- * Created by Daniel on 04/06/2017.
- */
-
 public class ProdutoService {
     private ProdutoReqServer produtoReqServer;
     private ProdutoRepository produtoRepository;

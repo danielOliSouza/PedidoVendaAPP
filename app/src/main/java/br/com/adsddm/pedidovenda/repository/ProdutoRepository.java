@@ -12,10 +12,6 @@ import java.util.List;
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 import br.com.adsddm.pedidovenda.model.Produto;
 
-/**
- * Created by Daniel on 16/06/2017.
- */
-
 public class ProdutoRepository extends Repository{
 
     public ProdutoRepository(Context context) {

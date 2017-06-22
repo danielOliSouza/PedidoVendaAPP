@@ -19,10 +19,6 @@ import br.com.adsddm.pedidovenda.model.PedidoVenda;
 import br.com.adsddm.pedidovenda.model.Produto;
 import br.com.adsddm.pedidovenda.reqServer.PedidoVendaReqServer;
 
-/**
- * Created by Daniel on 25/05/2017.
- */
-
 public class PedidoVendaService {
     private PedidoVendaReqServer pedidoVendaReqServer = new PedidoVendaReqServer();
 

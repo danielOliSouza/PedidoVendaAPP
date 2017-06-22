@@ -72,7 +72,7 @@ public class InfoProdutoActivity extends AppCompatActivity {
         try {
             Produto produto = itemPedidoVenda.getProduto();
             if(produto == null){
-                Toast.makeText(this, "Erro no Processo Interno", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.erro_processo_interno , Toast.LENGTH_LONG).show();
             }
             else{
 
@@ -87,6 +87,9 @@ public class InfoProdutoActivity extends AppCompatActivity {
         }
     }
 
+    public void onCancelar(View v){
+        finish();
+    }
     public void onAddProdutoLista(View view){
         itemPedidoVenda.setQtd(Integer.parseInt(etQtd.getText().toString()));
         if(pedidoVenda.getItempedidovendas().indexOf(itemPedidoVenda) == -1){

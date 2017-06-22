@@ -15,11 +15,6 @@ import java.net.URLEncoder;
 
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 
-
-/**
- * Created by Daniel on 25/05/2017.
- */
-
 public class PedidoVendaReqServer{
 
     public String enviaPedidoVenda(String param) throws Exception {

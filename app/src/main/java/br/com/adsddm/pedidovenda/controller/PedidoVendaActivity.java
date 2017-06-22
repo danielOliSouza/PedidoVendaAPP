@@ -74,9 +74,8 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     public void onSalvar(View view){
         try {
             pedidoVendaService.enviarPedidoVenda(pedidoVenda);
-            pedidoVenda = pedidoVendaService.limparPedidoVenda();
-            dadosView.setPedidoVenda(pedidoVenda);
-            listaProduto();
+            limparPedidoVenda();
+
         }catch (Exception e) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog);
             builder.setTitle("Alerta")
@@ -87,13 +86,23 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
 
     }
 
+    public void onCancelar(View view){
+        limparPedidoVenda();
+    }
+
+    public void limparPedidoVenda(){
+        pedidoVenda = pedidoVendaService.limparPedidoVenda();
+        dadosView.setPedidoVenda(pedidoVenda);
+        listaProduto();
+    }
+
     public void listaProduto(){
         List<ItemPedidoVenda> itens = pedidoVenda.getItempedidovendas();
         listView = (ListView) findViewById(R.id.lvProdutos);
         listView.setAdapter(new ItemPedidoVendaAdapter(this, itens));
         listView.setOnItemClickListener(this);
 
-        //Gambiarra, cambiarra pura!!!
+        //Gambiarra, gambiarra pura!!!
         //O scroll do list não esta funcionando
         //O list nao expande (wrap_context)
         listView.getLayoutParams().height = itens.size() * 180;

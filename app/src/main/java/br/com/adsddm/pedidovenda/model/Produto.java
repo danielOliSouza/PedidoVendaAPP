@@ -2,10 +2,6 @@ package br.com.adsddm.pedidovenda.model;
 
 import java.nio.FloatBuffer;
 
-/**
- * Created by Daniel on 24/05/2017.
- */
-
 public class Produto {
     private long _id;
     private long idServidor;

@@ -3,9 +3,6 @@ package br.com.adsddm.pedidovenda.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Daniel on 24/05/2017.
- */
 
 public class PedidoVenda {
     private Integer id;

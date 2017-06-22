@@ -11,10 +11,6 @@ import java.net.URL;
 
 import br.com.adsddm.pedidovenda.dadosview.DadosView;
 
-/**
- * Created by Rosivaldo on 20/06/2017.
- */
-
 public class ClienteReqServer {
     public String pegarListaClientes() throws Exception {
         InputStream stream = null;
