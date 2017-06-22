@@ -29,6 +29,7 @@ public class ClienteService {
 
             cliente.setId(Integer.parseInt(obj.getString("id")));
             cliente.setNome(obj.getString("nome"));
+            cliente.setCpf(obj.getString("cpf"));
 
             clientes.add(cliente);
         }

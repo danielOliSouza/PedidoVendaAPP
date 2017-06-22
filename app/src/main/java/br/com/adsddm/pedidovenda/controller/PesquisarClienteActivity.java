@@ -2,6 +2,7 @@ package br.com.adsddm.pedidovenda.controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,6 +38,7 @@ public class PesquisarClienteActivity extends AppCompatActivity implements Adapt
             lvCliente.setOnItemClickListener(this);
 
         } catch (Exception e) {
+            Log.e("ADSDDM", e.getMessage());
             Toast.makeText(this, "Servidor Indisponivel no Momento", Toast.LENGTH_LONG).show();
         }
 

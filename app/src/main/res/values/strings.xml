@@ -25,6 +25,7 @@
     <string name="atualizar">Atualizar</string>
     <string name="finalizar">Finalizar</string>
     <string name="total">Total: </string>
+    <string name="voltar">Voltar</string>
     <string name="erro_processo_interno">Erro Processo Interno</string>
     <string name="nao_possivel_buscar_produtos">Não Foi Posivel Buscar os Produtos</string>
     <string name="tempo_conecxao_servidor_expirado">"Tempo de Conecxão Com Servidor Expirado"</string>

@@ -16,7 +16,7 @@ public class DadosView {
     private Produto produtoSelecionado = null;
 
     public static final String TAG_APP = "ADSDDM";
-    public static final String URL_SERVIDOR = "http://192.168.0.101:8080/";
+    public static final String URL_SERVIDOR = "http://192.168.1.5:8080/";
 
     private DadosView(){
         pedidoVenda = new PedidoVenda();

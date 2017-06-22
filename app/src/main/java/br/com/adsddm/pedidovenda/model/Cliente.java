@@ -2,8 +2,8 @@ package br.com.adsddm.pedidovenda.model;
 
 public class Cliente {
     private Integer id;
-
     private String nome;
+    private String cpf;
 
     public Cliente() {
     }
@@ -24,9 +24,18 @@ public class Cliente {
         this.nome = nome;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     @Override
     public String toString() {
         return "ID: " + id + "\n"
-                +"Nome: " + nome;
+                +"Nome: " + nome + "\n"
+                +"CPF: " + cpf;
     }
 }

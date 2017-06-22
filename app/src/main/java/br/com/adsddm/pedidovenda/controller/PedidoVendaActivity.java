@@ -7,6 +7,9 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -33,7 +36,7 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
     private DadosView dadosView = DadosView.Instance();
     private PedidoVendaService pedidoVendaService = new PedidoVendaService();
 
-    private PedidoVenda pedidoVenda = dadosView.getPedidoVenda();
+    private PedidoVenda pedidoVenda;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +52,13 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         etCliente = (EditText) findViewById(R.id.etCliente);
 
         pedidoVendaService = new PedidoVendaService();
-
-        etCPF.addTextChangedListener(Mask.insert("###.###.###-##", etCPF));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        listaProduto();
-        tvSubTotal.setText(String.format("%.2f", pedidoVendaService.subTotal(pedidoVenda)).replace(".",","));
-        if(pedidoVenda.getCliente() != null)
-            etCliente.setText(pedidoVenda.getCliente().getNome());
+        pedidoVenda = dadosView.getPedidoVenda();
+        preencheCampos();
     }
 
     @Override
@@ -75,6 +74,7 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
         try {
             pedidoVendaService.enviarPedidoVenda(pedidoVenda);
             limparPedidoVenda();
+            preencheCampos();
 
         }catch (Exception e) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog);
@@ -88,12 +88,25 @@ public class PedidoVendaActivity extends AppCompatActivity implements AdapterVie
 
     public void onCancelar(View view){
         limparPedidoVenda();
+        preencheCampos();
     }
 
     public void limparPedidoVenda(){
         pedidoVenda = pedidoVendaService.limparPedidoVenda();
         dadosView.setPedidoVenda(pedidoVenda);
+    }
+
+    public void preencheCampos(){
         listaProduto();
+        tvSubTotal.setText(String.format("%.2f", pedidoVendaService.subTotal(pedidoVenda)).replace(".",","));
+        if(pedidoVenda.getCliente() != null) {
+            etCliente.setText(pedidoVenda.getCliente().getNome());
+            etCPF.setText(pedidoVenda.getCliente().getCpf());
+        }
+        else{
+            etCliente.setText("");
+            etCPF.setText("");
+        }
     }
 
     public void listaProduto(){

@@ -68,6 +68,7 @@ public class SelecionaProdutoActivity extends AppCompatActivity implements Adapt
         try {
             pedidoVendaService.enviarPedidoVenda(dados.getPedidoVenda());
             dados.setPedidoVenda(pedidoVendaService.limparPedidoVenda());
+            finish();
         }catch (Exception e) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Holo_Dialog);
             builder.setTitle("Alerta")
